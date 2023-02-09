@@ -3,15 +3,22 @@ export const addTodo = (data) => {
         type:'ADD_TODO',
         payload: {
             id: new Date().getTime().toString(),
-            data:data
+            data:data,
         }
     }
 }
-export const deleteTodo = () => {
+export const deleteTodo = (id) => {
     return {
-        type:'DELETE_TODO'
+        type:'DELETE_TODO',
+        id
     }
 }
+export const markTodo = (value) => {
+    return{
+        type:'MARKTODO',
+        value:value
+    }
+} 
 export const removeTodo = () => {
     return {
         type:'REMOVE_TODO'
