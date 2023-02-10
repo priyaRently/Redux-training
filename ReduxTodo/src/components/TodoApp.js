@@ -9,16 +9,16 @@ import {
 import CheckBox from '@react-native-community/checkbox'
 import React, { useState } from 'react'
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { addTodo, removeTodo, deleteTodo } from '../action/index'
+import { addTodo, removeTodo,} from '../action/index'
 import { useDispatch, useSelector } from 'react-redux';
+import TodoList from './TodoList';
 
 const TodoApp = () => {
 
     const [task, setTask] = useState('');
-    const [isSelected, setSelection] = useState(false);
+   
     const dispatch = useDispatch()
     const myState = useSelector((state) => state.todoReducer.list)
-
     return (
         <View style={styles.container}>
             <Text style={styles.title}>TODO APP</Text>
@@ -40,30 +40,15 @@ const TodoApp = () => {
                 Your Todo List
             </Text>
 
-            <ScrollView style={{ marginBottom: 6 }}>
+            <View  style={{ marginBottom: 6 }}>
                 {
                     myState?.map((props) => {
                         return (
-                            <View  style={styles.showTaskContainer}>
-                                <View style={styles.index}>
-                                    <CheckBox style={styles.checkbox}
-                                        value={isSelected}
-                                        onValueChange={(newValue) => { setSelection(newValue); }}
-                                    />
-                                </View>
-                                <View key={props.id} style={styles.showTask}>
-                                    <Text style={styles.taskText(isSelected)}>{props.data}</Text>
-                                    <TouchableOpacity
-                                        onPress={() => dispatch(deleteTodo(props.id))}>
-                                        <Icon style={styles.delete} name="delete" size={24} color='black' />
-                                    </TouchableOpacity>
-                                </View>
-
-                            </View>
+                            <TodoList data={props.data} id={props.id}/>
                         )
                     })
                 }
-            </ScrollView>
+            </View>
             <TouchableOpacity style={{ alignSelf: 'center' }}
                 onPress={() => dispatch(removeTodo())}>
                 <Text style={styles.clearAll}>Clear All</Text>

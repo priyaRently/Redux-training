@@ -76,16 +76,3 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
 })
-
-// //Redux store passes state to component
-// const mapStateToProps = (state) => {
-//     return{
-
-//     }
-// }
-
-// const mapDispatchToProps = (dispatch) => {
-//     return{
-        
-//     }
-// }
